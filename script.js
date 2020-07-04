@@ -19,7 +19,6 @@ function setAttributes(element, attributes) {
 function displayPhotos() {
   // Run function for each object in photosArray
   photosArray.forEach((photo) => {
-    console.log(photo);
     // Create <a> to link to Unsplash
     const item = document.createElement('a');
     setAttributes(item, {
@@ -49,6 +48,17 @@ async function getPhotos() {
     // Catch Error Here
   }
 }
+
+// Check to see if scrolling near bottom of page, Load More Photos
+window.addEventListener('scroll', () => {
+  if (
+    window.innerHeight + window.scrollY >=
+    document.body.offsetHeight - 1000
+  ) {
+    getPhotos();
+    console.log('load more');
+  }
+});
 
 // On Load
 getPhotos();
